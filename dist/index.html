@@ -1,0 +1,49 @@
+<!doctype>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hitomezashi Stitch JS</title>
+
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    </style>
+
+    <script src="hitomezashi-stitch.umd.js"></script>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', (event) => {
+        const instance = new Hitomezashi({
+          lineCap: 'square',
+          lineWidth: 2,
+          size: 16,
+          stitchings: [
+            `Qui Lorem consectetur est occaecat duis reprehenderit aliquip anim ex aute reprehenderit tempor. Exercitation fugiat nostrud labore id duis officia do proident proident Lorem. Sit Lorem do exercitation occaecat velit excepteur nostrud velit culpa Lorem ullamco. Consectetur pariatur laboris incididunt sint labore ullamco eiusmod dolore. Ex nulla fugiat labore sint duis veniam deserunt exercitation occaecat.`,
+            `Fugiat proident do amet tempor elit ex fugiat tempor ad irure. Quis do pariatur labore duis reprehenderit. Ut aute adipisicing sit id excepteur culpa et excepteur amet quis ipsum nulla. Deserunt proident labore minim commodo esse aute cupidatat tempor cillum.`
+          ]
+        });
+
+        const blob = new Blob([instance.toSVG()], {
+          type: "image/svg+xml",
+        });
+
+        const url =  URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'result.svg';
+
+        document.body.appendChild(a);
+        a.click();
+      })
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
